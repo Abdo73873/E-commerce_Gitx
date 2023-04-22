@@ -8,18 +8,19 @@ import 'package:get/get.dart';
 class ControlView extends GetWidget<AuthViewModel> {
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeViewModel());
 
-    return Obx(
-        ()=> GetBuilder<ControlViewModel>(
-              builder: (controller) => Scaffold(
-                body: controller.currentScreen,
-                bottomNavigationBar: bottomNavigationBar(),
-              ),
-            ),
-    );
+    return Obx(() {
+      return (Get.find<AuthViewModel>().user == null)
+          ? LoginView()
+          : GetBuilder<ControlViewModel>(
+        init: ControlViewModel(),
+        builder: (controller) => Scaffold(
+          body: controller.currentScreen,
+          bottomNavigationBar: bottomNavigationBar(),
+        ),
+      );
+    });
   }
-
   Widget bottomNavigationBar() {
     return GetBuilder<ControlViewModel>(
       init: ControlViewModel(),

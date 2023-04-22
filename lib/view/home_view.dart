@@ -19,7 +19,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeViewModel>(
-      init: Get.find(),
+      init: HomeViewModel(),
       builder: (controller) => controller.loading.value
           ? Center(child: CircularProgressIndicator())
           : Scaffold(

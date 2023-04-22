@@ -3,10 +3,7 @@ class CategoryModel {
 
   CategoryModel({required this.name,required this.image});
 
-  CategoryModel.fromJson(Map<dynamic, dynamic> map) {
-    if (map == null) {
-      return;
-    }
+  CategoryModel.fromJson(Map<String, dynamic> map) {
     name = map['name'];
     image = map['image'];
   }

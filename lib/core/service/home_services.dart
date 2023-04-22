@@ -6,13 +6,13 @@ class HomeService {
   final CollectionReference _productCollectionRef =
       FirebaseFirestore.instance.collection('Products');
 
-  Future<List<QueryDocumentSnapshot>> getCategory() async {
+   getCategory() async {
     var value = await _categoryCollectionRef.get();
 
     return value.docs;
   }
 
-  Future<List<QueryDocumentSnapshot>> getBestSelling() async {
+   getBestSelling() async {
     var value = await _productCollectionRef.get();
 
     return value.docs;

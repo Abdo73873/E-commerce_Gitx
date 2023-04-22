@@ -11,11 +11,11 @@ class AuthViewModel extends GetxController {
   GoogleSignIn _googleSignIn = GoogleSignIn(scopes: ['email']);
   FirebaseAuth _auth = FirebaseAuth.instance;
   FacebookAuth _facebookAuth=FacebookAuth.instance;
-  late String email, password, name;
-
+  late String email, password;
+   String?  name;
   Rx<User?> _user = Rx<User?>(null);
 
-  String get user => _user.value!.email!;
+  String? get user => _user.value?.email!;
   @override
   void onInit() {
     super.onInit();
@@ -29,6 +29,7 @@ class AuthViewModel extends GetxController {
 
   @override
   void onClose() {
+    _user.close();
     super.onClose();
   }
 
@@ -53,7 +54,10 @@ class AuthViewModel extends GetxController {
     final LoginResult result = await _facebookAuth.login(permissions: ["email"]);
         final OAuthCredential facebookAuthCredential =
         FacebookAuthProvider.credential(result.accessToken!.token);
-           await _auth.signInWithCredential(facebookAuthCredential);
+           await _auth.signInWithCredential(facebookAuthCredential).then((user){
+             saveUser(user);
+             Get.offAll(HomeView());
+           });
   }
 
   void signInWithEmailAndPassword() async {
@@ -95,8 +99,11 @@ class AuthViewModel extends GetxController {
     await FireStoreUser().addUserToFireStore(UserModel(
       userId: user.user!.uid,
       email: user.user!.email!,
-      name: name == null ? user.user!.displayName! : name,
+      name: name == null ? user.user!.displayName! : name!,
       pic: '',
     ));
+  }
+  void logout(){
+    _auth.signOut();
   }
 }

@@ -169,6 +169,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.4.0"
+  codemirror:
+    dependency: "direct main"
+    description:
+      name: codemirror
+      sha256: a841d17a7e398bf1f28c29753d9274d63b6ac4b0db732942f5aa734e36e9b893
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.7.9+5.65.12"
   collection:
     dependency: transitive
     description:

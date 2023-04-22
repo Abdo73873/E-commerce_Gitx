@@ -1,5 +1,5 @@
 import 'package:ecommerce_app/helper/extenstion.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ProductModel {
   late String name, image, description, sized, price;
@@ -15,9 +15,6 @@ class ProductModel {
         required this.price});
 
   ProductModel.fromJson(Map<dynamic, dynamic> map) {
-    if (map == null) {
-      return;
-    }
 
     name = map['name'];
     image = map['image'];
@@ -26,6 +23,7 @@ class ProductModel {
     sized = map['sized'];
     price = map['price'];
   }
+
 
   toJson() {
     return {

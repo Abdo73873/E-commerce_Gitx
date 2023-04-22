@@ -26,6 +26,7 @@ class DetailsView extends StatelessWidget {
             SizedBox(
               height: 15,
             ),
+
             Expanded(
               child: SingleChildScrollView(
                 child: Container(

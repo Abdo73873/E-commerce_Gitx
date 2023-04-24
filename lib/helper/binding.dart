@@ -5,7 +5,9 @@ import 'package:get/get.dart';
 
 class Binding extends Bindings {
   @override
-  //private code here
-  //private code here
+  void dependencies() {
+    Get.lazyPut(() => AuthViewModel(),fenix: true);
+    Get.lazyPut(() => ControlViewModel(),fenix: true);
+    Get.lazyPut(() => HomeViewModel(),fenix: true);
+  }
 }
-
